@@ -152,7 +152,7 @@ namespace Algorithm.Demo
                         var temp = nums[index];
                         nums[index] = nums[firstEvenNumIndex];
                         nums[firstEvenNumIndex] = temp;
-                        if (index - firstEvenNumIndex > 1) firstEvenNumIndex++;
+                        if (index - firstEvenNumIndex > 1) firstEvenNumIndex++;//交换的两个数中间还有其它偶数
                         else firstEvenNumIndex = index;
                     }
                 }
