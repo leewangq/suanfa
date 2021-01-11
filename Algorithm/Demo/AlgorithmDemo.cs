@@ -130,5 +130,35 @@ namespace Algorithm.Demo
             }
             return list;
         }
+
+        /// <summary>
+        /// 输入一组数，输出要求：奇数在前，偶数在后，时间复杂度要求O(n)
+        /// </summary>
+        /// <param name="nums"></param>
+        public static void Demo3(int[] nums) 
+        {
+            int index = 0;
+            int firstEvenNumIndex = -1;
+            while (index < nums.Length) 
+            {
+                if (nums[index] % 2 == 0)
+                {
+                    if (index == 0||firstEvenNumIndex == -1||index< firstEvenNumIndex) firstEvenNumIndex = index;
+                }
+                else 
+                {
+                    if (firstEvenNumIndex > -1 && index > firstEvenNumIndex) 
+                    {
+                        var temp = nums[index];
+                        nums[index] = nums[firstEvenNumIndex];
+                        nums[firstEvenNumIndex] = temp;
+                        if (index - firstEvenNumIndex > 1) firstEvenNumIndex++;
+                        else firstEvenNumIndex = index;
+                    }
+                }
+                index++;
+            }
+            Console.WriteLine(string.Join(',',nums));
+        }
     }
 }

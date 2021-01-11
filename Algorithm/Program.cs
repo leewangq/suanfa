@@ -26,7 +26,8 @@ namespace Algorithm
             //Console.WriteLine();
             //Console.Write("层次遍历：");
             //tree.LevelTranversal(tree.Head);
-            AlgorithmDemo.TestDemo2(new char[] { '1','2','3','4'});
+            //AlgorithmDemo.TestDemo2(new char[] { '1','2','3','4'});
+            AlgorithmDemo.Demo3(new int[] { 2,4,3,6,9,8,1,12,3,10,5,7 });
             Console.ReadLine();
         }
 
