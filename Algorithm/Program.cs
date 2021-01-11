@@ -1,4 +1,5 @@
-﻿using Algorithm.LinkedList;
+﻿using Algorithm.Demo;
+using Algorithm.LinkedList;
 using Algorithm.Queue;
 using Algorithm.Tree;
 using System;
@@ -12,20 +13,20 @@ namespace Algorithm
     {
         static void Main(string[] args)
         {
-            char[] data = { 'A', 'B', 'C','D', 'E', 'F', 'G', 'H', 'I', 'J','K' };
-            BinaryTree<char> tree = new BinaryTree<char>(data);
-            Console.Write("先序遍历：");
-            tree.PreTraversal(tree.Head);
-            Console.WriteLine();
-            Console.Write("中序遍历：");
-            tree.InTraversal(tree.Head);
-            Console.WriteLine();
-            Console.Write("后序遍历：");
-            tree.LastTraversal(tree.Head);
-            Console.WriteLine();
-            Console.Write("层次遍历：");
-            tree.LevelTranversal(tree.Head);
-            Console.WriteLine();
+            //char[] data = { 'A', 'B', 'C','D', 'E', 'F', 'G', 'H', 'I', 'J','K' };
+            //BinaryTree<char> tree = new BinaryTree<char>(data);
+            //Console.Write("先序遍历：");
+            //tree.PreTraversal(tree.Head);
+            //Console.WriteLine();
+            //Console.Write("中序遍历：");
+            //tree.InTraversal(tree.Head);
+            //Console.WriteLine();
+            //Console.Write("后序遍历：");
+            //tree.LastTraversal(tree.Head);
+            //Console.WriteLine();
+            //Console.Write("层次遍历：");
+            //tree.LevelTranversal(tree.Head);
+            AlgorithmDemo.TestDemo2(new char[] { '1','2','3','4'});
             Console.ReadLine();
         }
 

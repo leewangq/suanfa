@@ -55,5 +55,80 @@ namespace Algorithm.Demo
             }
             Console.WriteLine("执行总次数:" + count);
         }
+
+        /// <summary>
+        /// 输出输入字符所有全排列组合
+        /// </summary>
+        /// <param name="chars"></param>
+        public static void TestDemo2(char[] chars) 
+        {
+            char[] tempChars;
+            for (var i = 0; i < chars.Length; i++)
+            {
+                tempChars = new char[chars.Length-1];
+                Array.Copy(chars,1,tempChars,0, chars.Length - 1);
+                var tempList = Demo2(tempChars);
+                foreach (var item in tempList)
+                {
+                    var sb = new StringBuilder();
+                    sb.Append(chars[0] + "," + item);
+                    Console.WriteLine(sb);
+                }
+                if (i < chars.Length - 1)
+                {
+                    char temp = chars[i + 1];
+                    chars[i + 1] = chars[0];
+                    chars[0] = temp;
+                }
+            }
+            tempChars = null;
+        }
+        /// <summary>
+        /// 1.交换2.递归
+        /// </summary>
+        /// <param name="chars"></param>
+        private static List<StringBuilder> Demo2(char[] chars)
+        {
+            var list = new List<StringBuilder>();
+            if (chars == null || chars.Length == 0) throw new Exception("参数异常!");
+            else if (chars.Length == 1)
+            {
+                list.Add(new StringBuilder(chars[0]));
+            }
+            else if (chars.Length == 2)
+            {
+                var sb1 = new StringBuilder();
+                sb1.Append(chars[0] + "," + chars[1]);
+                list.Add(sb1);
+                var sb2 = new StringBuilder();
+                sb2.Append(chars[1] + "," + chars[0]);
+                list.Add(sb2);
+            }
+            else
+            {
+                char[] tempChars;
+                for (var i = 0; i < chars.Length; i++) 
+                {
+                    tempChars = new char[chars.Length - 1];
+                    Array.Copy(chars, 1, tempChars, 0, chars.Length - 1);
+                    var tempList = Demo2(tempChars);
+                    foreach (var item in tempList) 
+                    {
+                        var sb = new StringBuilder();
+                        sb.Append(chars[0]+","+ item);
+                        list.Add(sb);
+                    }
+                    //把待处理的下一项放在第一个位置
+                    if (i < chars.Length - 1) 
+                    {
+                        char temp = chars[i+1];
+                        chars[i + 1] = chars[0];
+                        chars[0] = temp;
+                    }
+                }
+                tempChars = null;
+            }
+            return list;
+        }
     }
 }
