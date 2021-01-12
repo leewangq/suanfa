@@ -28,10 +28,11 @@ namespace Algorithm.Demo
             }
             var list = new List<int>() { startnum };
             int count = 0;
-            while (startnum >= 1)
+            while (startnum > 1)
             {
                 count++;
                 var sum = list.Sum();
+                if (n - sum > (startnum - 1) * (startnum - 1)) break;
                 if (n - sum < startnum - 1)
                 {
                     list.RemoveAt(0);

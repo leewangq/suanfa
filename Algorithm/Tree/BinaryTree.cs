@@ -6,7 +6,7 @@ namespace Algorithm.Tree
 {
     public class BinaryTree<T>
     {
-        private TreeNode<T> head; //头指针
+        private TreeNode<T> head; //头指针，用于遍历
         private T[] datas; //用于构造二叉树的字符串
         public TreeNode<T> Head
         {
@@ -20,7 +20,7 @@ namespace Algorithm.Tree
             Add(head, 0); //给头结点添加孩子节点
         }
 
-        //使用先序创建二叉树 #:表示该位置无节点()
+        //使用先序创建完全二叉树 #:表示该位置无节点()
         private void Add(TreeNode<T> parent, int index)
         {
             if (parent == null)
@@ -42,6 +42,7 @@ namespace Algorithm.Tree
                 parent.RChild = new TreeNode<T>(datas[rightIndex]);
                 Add(parent.RChild, rightIndex);
             }
+            datas = null;//回收
         }
 
         //先序遍历
