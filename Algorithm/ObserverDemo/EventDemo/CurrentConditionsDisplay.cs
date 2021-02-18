@@ -18,10 +18,11 @@ namespace Algorithm.ObserveDemo.EventDemo
             WDprovider.BindRaiseWeatherDataChangedEvent(provider_RaiseWeatherDataChangedEvent);
         }
 
-        private void provider_RaiseWeatherDataChangedEvent(object sender, WeatherDataEventArgs e)
+        private bool provider_RaiseWeatherDataChangedEvent(object sender, WeatherDataEventArgs e)
         {
             data = e.data;
             UpdateDisplay();
+            return true;
         }
 
         public void UpdateDisplay()

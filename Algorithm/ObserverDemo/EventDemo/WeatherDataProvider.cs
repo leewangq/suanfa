@@ -9,14 +9,16 @@ namespace Algorithm.ObserveDemo.EventDemo
     /// </summary>
     public class WeatherDataProvider: IDisposable
     {
-        private event EventHandler<WeatherDataEventArgs> raiseWeatherDataChangedEvent;
+        public delegate bool WeatherEventHandler<TEventArgs>(object sender, TEventArgs e);//自定义委托
+
+        private event WeatherEventHandler<WeatherDataEventArgs> raiseWeatherDataChangedEvent;
        
-        public void BindRaiseWeatherDataChangedEvent(EventHandler<WeatherDataEventArgs> raiseFunction) 
+        public void BindRaiseWeatherDataChangedEvent(WeatherEventHandler<WeatherDataEventArgs> raiseFunction) 
         {
             this.raiseWeatherDataChangedEvent += raiseFunction;
         }
 
-        public void UnBindRaiseWeatherDataChangedEvent(EventHandler<WeatherDataEventArgs> raiseFunction)
+        public void UnBindRaiseWeatherDataChangedEvent(WeatherEventHandler<WeatherDataEventArgs> raiseFunction)
         {
             this.raiseWeatherDataChangedEvent -= raiseFunction;
         }
@@ -30,7 +32,7 @@ namespace Algorithm.ObserveDemo.EventDemo
         {
             if (raiseWeatherDataChangedEvent != null)
             {
-                foreach (EventHandler<WeatherDataEventArgs>
+                foreach (WeatherEventHandler<WeatherDataEventArgs>
                 item in raiseWeatherDataChangedEvent.GetInvocationList())
                 {
                     raiseWeatherDataChangedEvent -= item;
