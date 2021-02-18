@@ -9,39 +9,31 @@ namespace Algorithm.ObserveDemo.EventDemo
     /// </summary>
     public class WeatherDataProvider: IDisposable
     {
-        public event EventHandler<WeatherDataEventArgs> RaiseWeatherDataChangedEvent;//事件绑定多个方法
-
-        private void OnRaiseWeatherDataChangedEvent(WeatherDataEventArgs e)
+        private event EventHandler<WeatherDataEventArgs> raiseWeatherDataChangedEvent;
+       
+        public void BindRaiseWeatherDataChangedEvent(EventHandler<WeatherDataEventArgs> raiseFunction) 
         {
-            // Make a temporary copy of the event to avoid possibility of
-            // a race condition if the last subscriber unsubscribes
-            // immediately after the null check and before the event is raised.
-            EventHandler<WeatherDataEventArgs> handler = RaiseWeatherDataChangedEvent;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            this.raiseWeatherDataChangedEvent += raiseFunction;
         }
+
+        public void UnBindRaiseWeatherDataChangedEvent(EventHandler<WeatherDataEventArgs> raiseFunction)
+        {
+            this.raiseWeatherDataChangedEvent -= raiseFunction;
+        }
+
         public void UpdateWeatherData(float temp, float humid, float pres) 
         {
-            //TODO:更新
-            NotifyDisplays(temp, humid, pres);
-        }
-        private void NotifyDisplays(float temp, float humid, float pres)
-        {
-           /* OnRaiseWeatherDataChangedEvent
-                 (new WeatherDataEventArgs(new WeatherData(temp, humid, pres)));*/
-            RaiseWeatherDataChangedEvent(this, new WeatherDataEventArgs(new WeatherData(temp, humid, pres)));
+            raiseWeatherDataChangedEvent(this, new WeatherDataEventArgs(new WeatherData(temp, humid, pres)));//触发事件
         }
 
         public void Dispose()
         {
-            if (RaiseWeatherDataChangedEvent != null)
+            if (raiseWeatherDataChangedEvent != null)
             {
                 foreach (EventHandler<WeatherDataEventArgs>
-                item in RaiseWeatherDataChangedEvent.GetInvocationList())
+                item in raiseWeatherDataChangedEvent.GetInvocationList())
                 {
-                    RaiseWeatherDataChangedEvent -= item;
+                    raiseWeatherDataChangedEvent -= item;
                 }
             }
         }

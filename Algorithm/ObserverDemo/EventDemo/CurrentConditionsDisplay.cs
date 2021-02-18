@@ -15,10 +15,10 @@ namespace Algorithm.ObserveDemo.EventDemo
         public CurrentConditionsDisplay(WeatherDataProvider provider)
         {
             WDprovider = provider;
-            WDprovider.RaiseWeatherDataChangedEvent += provider_RaiseWeatherDataChangedEvent;
+            WDprovider.BindRaiseWeatherDataChangedEvent(provider_RaiseWeatherDataChangedEvent);
         }
 
-        void provider_RaiseWeatherDataChangedEvent(object sender, WeatherDataEventArgs e)
+        private void provider_RaiseWeatherDataChangedEvent(object sender, WeatherDataEventArgs e)
         {
             data = e.data;
             UpdateDisplay();
@@ -31,7 +31,7 @@ namespace Algorithm.ObserveDemo.EventDemo
 
         public void Unsubscribe()
         {
-            WDprovider.RaiseWeatherDataChangedEvent -= provider_RaiseWeatherDataChangedEvent;
+            WDprovider.UnBindRaiseWeatherDataChangedEvent(provider_RaiseWeatherDataChangedEvent);
         }
 
     }

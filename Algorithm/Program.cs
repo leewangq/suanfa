@@ -15,8 +15,8 @@ namespace Algorithm
         static void Main(string[] args)
         {
             //AlgorithmDemo.GetContinuousNumBySumEqualsInputNum(15);
-            WeatherDataProvider provider = new WeatherDataProvider();
-            CurrentConditionsDisplay current = new CurrentConditionsDisplay(provider);
+            var provider = new WeatherDataProvider();
+            var current = new CurrentConditionsDisplay(provider);
             provider.UpdateWeatherData(1, 2, 3);
             /*  WeatherDataPub weatherDataPub = new WeatherDataPub();
               WeatherDataSub weatherDataSub = new WeatherDataSub(weatherDataPub);
