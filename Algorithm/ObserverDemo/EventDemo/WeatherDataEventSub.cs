@@ -7,12 +7,12 @@ namespace Algorithm.ObserveDemo.EventDemo
     /// <summary>
     /// 订阅者
     /// </summary>
-    public class CurrentConditionsDisplay
+    public class WeatherDataEventSub
     {
         WeatherData data;
-        WeatherDataProvider WDprovider;
+        WeatherDataEventPub WDprovider;
 
-        public CurrentConditionsDisplay(WeatherDataProvider provider)
+        public WeatherDataEventSub(WeatherDataEventPub provider)
         {
             WDprovider = provider;
             WDprovider.BindRaiseWeatherDataChangedEvent(provider_RaiseWeatherDataChangedEvent);
